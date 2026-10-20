@@ -2840,7 +2840,7 @@ tr.stale td { color: var(--muted); }
   <div class="province-bar" id="province-bar">
     <div class="province-bar-in">
       <div class="province-selector-group">
-        <button id="province-menu-btn" type="button" class="btn-province-main" onclick="window.openProvinceModal ? window.openProvinceModal() : null" aria-haspopup="dialog" aria-expanded="false" title="คลิกเพื่อเลือกจังหวัดหรือเขื่อน">
+        <button id="province-menu-btn" type="button" class="btn-province-main" aria-haspopup="dialog" aria-expanded="false" title="คลิกเพื่อเลือกจังหวัดหรือเขื่อน">
           <span class="province-flag-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:-2px;margin-right:4px;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
           <span class="province-current-text" id="province-current-text">ภาพรวมเขื่อนทั่วประเทศ (35 เขื่อน)</span>
           <svg class="chevron-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -2854,7 +2854,7 @@ tr.stale td { color: var(--muted); }
           <button type="button" class="quick-pill" data-province="ลพบุรี" onclick="window.switchProvince('ลพบุรี')">ลพบุรี</button>
           <button type="button" class="quick-pill" data-province="ตาก" onclick="window.switchProvince('ตาก')">ตาก</button>
           <button type="button" class="quick-pill" data-province="สุราษฎร์ธานี" onclick="window.switchProvince('สุราษฎร์ธานี')">สุราษฎร์ธานี</button>
-          <button type="button" class="quick-pill btn-more-provinces" id="btn-open-province-modal" onclick="window.openProvinceModal ? window.openProvinceModal() : null">+ อีก 20 จังหวัด</button>
+          <button type="button" class="quick-pill btn-more-provinces" id="btn-open-province-modal">+ อีก 20 จังหวัด</button>
         </div>
       </div>
     </div>
@@ -2862,14 +2862,14 @@ tr.stale td { color: var(--muted); }
 
   <!-- Province & Dam Selection Modal -->
   <div id="province-modal" class="province-modal" hidden>
-    <div class="province-modal-backdrop" id="province-modal-backdrop" onclick="window.closeProvinceModal ? window.closeProvinceModal() : null"></div>
+    <div class="province-modal-backdrop" id="province-modal-backdrop"></div>
     <div class="province-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="province-modal-title">
       <div class="province-modal-header">
         <div class="province-modal-title-wrap">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--series-1);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
           <h2 id="province-modal-title">เลือกจังหวัดหรือเขื่อนที่ต้องการติดตาม</h2>
         </div>
-        <button id="province-modal-close" type="button" class="btn-modal-close" onclick="window.closeProvinceModal ? window.closeProvinceModal() : null" aria-label="ปิดหน้าต่าง">
+        <button id="province-modal-close" type="button" class="btn-modal-close" aria-label="ปิดหน้าต่าง">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
@@ -2980,10 +2980,10 @@ tr.stale td { color: var(--muted); }
     <section id="map-section" class="map-wrap hero-map" aria-labelledby="map-h">
       <div class="map-head">
         <div class="map-title-group">
-          <h1 id="map-h" style="margin:0; font-family:var(--font-display); font-size:var(--fs-lg); font-weight:700; display:inline-flex; align-items:center; gap:8px;">
+          <h2 id="map-h" style="margin:0; font-family:var(--font-display); font-size:var(--fs-lg); font-weight:700; display:inline-flex; align-items:center; gap:8px;">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--series-1)"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
             <span id="map-title-text">แผนที่เขื่อนทั่วประเทศ (35 เขื่อน)</span>
-          </h1>
+          </h2>
         </div>
         <button id="map-back-btn" type="button" class="btn-back-national" onclick="window.switchProvince('all')" style="display:none;" title="คลิกเพื่อกลับไปดูภาพรวม 35 เขื่อนทั่วประเทศ">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.8"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -3681,11 +3681,11 @@ function ridDam(payload, damId) {
   return null;
 }
 
-function ridSwoc(payload) {
+function ridSwoc(payload, province = 'เพชรบุรี') {
   const data = Array.isArray(payload?.data) ? payload.data : [];
   const out = [];
   for (const r of data) {
-    if (r?.province_t !== PROVINCE) continue;
+    if (province && province !== 'all' && r?.province_t !== province) continue;
     const observed_at = Date.parse(r.hourly_time_utc);
     if (!r.station_code || Number.isNaN(observed_at)) continue;
     const name = r.station_detail || r.name;
@@ -5270,7 +5270,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
     const d = (snap?.allDams || []).find(x => String(x.id) === String(damId)) || (window.DAM_CATALOG && window.DAM_CATALOG[String(damId)]);
     if (!d || !d.lat || !d.lng || !basinMap) return;
     basinMap.setView([d.lat, d.lng], 13, { animate: true });
-    $('#hero-map-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    $('#map-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     const marker = basinMarkers.get(d.id) || basinMarkers.get(Number(d.id)) || basinMarkers.get(String(d.id));
     if (marker) {
       setTimeout(() => marker.openPopup(), 400);
@@ -5357,7 +5357,9 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
       };
     });
 
-    searchInput?.addEventListener('input', renderGrid);
+    if (searchInput) {
+      searchInput.oninput = renderGrid;
+    }
 
     function renderGrid() {
       const q = (searchInput?.value || '').trim().toLowerCase();
@@ -5566,6 +5568,16 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
 
   // ---------- journey ----------
   function renderJourney(s) {
+    const hasJourney = Array.isArray(s.journey) && s.journey.length > 0;
+    const journeySec = $('#journey-section');
+    if (journeySec) journeySec.hidden = !hasJourney;
+    const journeyNavLink = document.querySelector('a.sidebar-link[data-target="journey-section"]');
+    if (journeyNavLink) journeyNavLink.style.display = hasJourney ? '' : 'none';
+    if (!hasJourney) {
+      const jEl = $('#journey');
+      if (jEl) jEl.innerHTML = '';
+      return;
+    }
     $('#journey').innerHTML = s.journey
       .map((j) => `<li class="${j.key === 'city' ? 'is-city' : ''} ${j.stale ? 'stale' : ''}" data-key="${j.key}" title="คลิกเพื่อซูมดูหมุด ${esc(j.label)} บนแผนที่">
           ${journeyBadge(j)}
@@ -6271,7 +6283,33 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
     const b3a = s.cards.release;
     const weir = s.cards.weir;
     const dateStr = when(s.generated_at);
-    const isPhet = s.currentProvince === 'เพชรบุรี' || s.currentProvince === 'all';
+    if (s.currentProvince === 'all') {
+      const ns = s.nationalStats || {};
+      const spillDams = ns.spilling_dams || [];
+      const warnDams = ns.warning_dams || [];
+      let msg = `[รายงานสถานการณ์น้ำ] ภาพรวม 35 เขื่อนหลักทั่วประเทศ\n`;
+      msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+      msg += `เวลาข้อมูล: ${dateStr}\n`;
+      msg += `สถานะภาพรวม: ${statusTag} ${h.title}\n`;
+      if (h.sentence) msg += `การแจ้งเตือน: ${h.sentence}\n`;
+      msg += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+      msg += `[1] ปริมาณน้ำกักเก็บ 35 เขื่อนหลัก\n`;
+      msg += `   • ปริมาณน้ำรวม: ${fmtNum(ns.total_volume_mcm, 0)} / ${fmtNum(ns.total_capacity_mcm, 0)} ล้าน ลบ.ม. (${fmtNum(ns.overall_percent, 1)}%)\n`;
+      msg += `   • ไหลเข้าเขื่อนรวม: ~${fmtNum(ns.total_inflow_mcm, 1)} ล้าน ลบ.ม./วัน\n`;
+      msg += `   • ระบายออกรวม: ~${fmtNum(ns.total_outflow_mcm, 1)} ล้าน ลบ.ม./วัน\n\n`;
+      if (spillDams.length > 0) {
+        msg += `[2] เขื่อนที่น้ำล้นสปิลเวย์ (${spillDams.length} แห่ง)\n`;
+        msg += `   • ${spillDams.map(d => `${d.shortName || d.name} (${fmtNum(d.percent, 0)}%)`).join(', ')}\n\n`;
+      }
+      if (warnDams.length > 0) {
+        msg += `[${spillDams.length > 0 ? '3' : '2'}] เขื่อนเฝ้าระวังน้ำมาก ≥80% (${warnDams.length} แห่ง)\n`;
+        msg += `   • ${warnDams.slice(0, 6).map(d => `${d.shortName || d.name} (${fmtNum(d.percent, 0)}%)`).join(', ')}${warnDams.length > 6 ? ` และอีก ${warnDams.length - 6} แห่ง` : ''}\n\n`;
+      }
+      msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+      msg += `สายด่วน ปภ. 1784 · แจ้งเหตุน้ำท่วม (ฟรี 24 ชม.)`;
+      return msg;
+    }
+    const isPhet = s.currentProvince === 'เพชรบุรี';
 
     let msg = `[รายงานสถานการณ์น้ำ] ${isPhet ? 'ลุ่มน้ำเพชรบุรี' : 'จ.' + s.currentProvince}\n`;
     msg += `━━━━━━━━━━━━━━━━━━━━\n`;
@@ -6304,7 +6342,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
         msg += `   • บ้านสองพี่น้อง (B.3A): ${fmtNum(b3a.value)} ลบ.ม./วินาที\n`;
       }
       if (weir && weir.outflow !== undefined) {
-        msg += `   • เขื่อนเพชร: ปล่อยลงแม่น้ำไปตัวเมือง ${fmtNum(weir.outflow)} ลบ.ม./วิ (ผันเข้าคลอง ${fmtNum(weir.canal)} ลบ.ม./วิ)\n`;
+        msg += `   • เขื่อนเพชร: ปล่อยลงแม่น้ำไปตัวเมือง ${fmtNum(weir.outflow)} ลบ.ม./วิ (ผันเข้าคลอง ${fmtNum(weir.diverted)} ลบ.ม./วิ)\n`;
       }
       msg += `\n`;
     }
@@ -7864,7 +7902,11 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
     }
   }
 
+  let lastMapProvince = null;
+
   function updateBasinMap(s) {
+    const provinceChanged = lastMapProvince !== s.currentProvince;
+    if (basinMap && typeof L !== 'undefined') lastMapProvince = s.currentProvince;
     if (!basinMap || typeof L === 'undefined') return;
     if (!basinLayerGroup || !damLayerGroup || !waterLayerGroup || !rainLayerGroup || !cityLayerGroup || !floodLayerGroup || !boundaryLayerGroup) {
       if (!boundaryLayerGroup) boundaryLayerGroup = L.layerGroup().addTo(basinMap);
@@ -8123,7 +8165,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
     // ---------------- NATIONAL ALL DAMS MAP MODE ----------------
     if (s.currentProvince === 'all') {
       if (basinMap) {
-        basinMap.setView([13.5, 100.8], 6);
+        if (provinceChanged) basinMap.setView([13.5, 100.8], 6);
       }
       const allDams = s.allDams || [];
       for (const d of allDams) {
@@ -8216,7 +8258,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
     // Set map center and zoom for the selected province
     const provCenter = PROVINCE_CENTERS[s.currentProvince] || PROVINCE_CENTERS['all'];
     if (basinMap) {
-      basinMap.setView([provCenter.lat, provCenter.lng], provCenter.zoom);
+      if (provinceChanged) basinMap.setView([provCenter.lat, provCenter.lng], provCenter.zoom);
     }
 
     const stations = s.stations || [];
@@ -8525,7 +8567,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
           ${weir ? `
             <div style="font-size:12px;color:var(--ink-2);line-height:1.45;background:color-mix(in srgb, var(--surface) 70%, var(--ink) 4%);padding:8px 10px;border-radius:8px;margin:6px 0;">
               <div>• ปล่อยลงแม่น้ำไปตัวเมือง: <strong>${fmtNum(weir.outflow)}</strong> ลบ.ม./วิ</div>
-              <div>• ตัดยอดน้ำเข้า 4 คลอง: <strong>${fmtNum(weir.canal)}</strong> ลบ.ม./วิ</div>
+              <div>• ตัดยอดน้ำเข้า 4 คลอง: <strong>${fmtNum(weir.diverted)}</strong> ลบ.ม./วิ</div>
               <div>• น้ำมาจากแก่งกระจาน: <strong>${fmtNum(weir.inflow)}</strong> ลบ.ม./วิ</div>
             </div>
           ` : `<div style="font-size:12px;color:var(--ink-2);margin:6px 0;">เขื่อนทดน้ำเพื่อผันน้ำเข้า 4 คลองชลประทานและควบคุมปริมาณน้ำไหลผ่านตัวเมือง</div>`}
@@ -8766,6 +8808,8 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
     renderStations(s);
     renderSources(s.freshness);
     renderPreparednessGuide(s);
+    renderNationalDamsGrid(s);
+    updateShareLineLink(s);
     if (!basinMap) initBasinMap();
     updateBasinMap(s);
     setTimeout(() => basinMap?.invalidateSize(), 150);
