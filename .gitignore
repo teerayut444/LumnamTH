@@ -2,4 +2,6 @@ scratch/
 __pycache__/
 *.pyc
 *.bak
-phetchaburi-monitor - Copy.html
+* - Copy.html
+*-Copy.html
+*- Copy.*
