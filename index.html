@@ -2895,12 +2895,6 @@ tr.stale td { color: var(--muted); }
       </button>
     </div>
     <nav class="sidebar-nav">
-      <a href="#national-dams-section" class="sidebar-link" data-target="national-dams-section" id="sidebar-dams-link">
-        <span class="sidebar-icon">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 20V8h9l6 12z"/><path d="M3 11h8"/><path d="M7 11v9"/></svg>
-        </span>
-        <span class="sidebar-label">35 เขื่อนทั่วไทย</span>
-      </a>
       <a href="#map-section" class="sidebar-link is-active" data-target="map-section">
         <span class="sidebar-icon">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
@@ -2919,29 +2913,11 @@ tr.stale td { color: var(--muted); }
         </span>
         <span class="sidebar-label">4 ด่านสำคัญ</span>
       </a>
-      <a href="#charts-section" class="sidebar-link" data-target="charts-section">
-        <span class="sidebar-icon">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-        </span>
-        <span class="sidebar-label">กราฟแนวโน้ม</span>
-      </a>
       <a href="#stations-section" class="sidebar-link" data-target="stations-section">
         <span class="sidebar-icon">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
         </span>
         <span class="sidebar-label">ตาราง 16 สถานี</span>
-      </a>
-      <a href="#preparedness-guide" class="sidebar-link" data-target="preparedness-guide">
-        <span class="sidebar-icon">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-        </span>
-        <span class="sidebar-label">คู่มือ & ฉุกเฉิน</span>
-      </a>
-      <a href="#glossary" class="sidebar-link" data-target="glossary">
-        <span class="sidebar-icon">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-        </span>
-        <span class="sidebar-label">อ่านตัวเลข</span>
       </a>
     </nav>
     <div class="sidebar-footer">
@@ -3092,66 +3068,7 @@ tr.stale td { color: var(--muted); }
       <section class="cards" id="cards" aria-label="ตัวเลขสำคัญ"></section>
     </section>
 
-    <!-- ภาพรวม 35 เขื่อนหลักทั่วประเทศ (National Dam Explorer) -->
-    <section id="national-dams-section" class="national-dams-wrap" aria-labelledby="nat-dam-title">
-      <div class="national-dams-card">
-        <div class="national-dams-head">
-          <div class="national-title-group">
-            <h2 id="nat-dam-title">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--series-1);flex:none;"><path d="M3 20V8h9l6 12z"/><path d="M3 11h8"/><path d="M7 11v9"/></svg>
-              <span>สถานการณ์ 35 เขื่อนหลักทั่วประเทศ</span>
-            </h2>
-            <span class="muted national-subtitle">รายงานสถานการณ์น้ำรายวัน กรมชลประทาน & กฟผ. (RID / EGAT)</span>
-          </div>
-          <div class="national-head-actions">
-            <div class="national-search-wrap">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <input type="text" id="dam-table-search" placeholder="ค้นหาชื่อเขื่อน / จังหวัด..." class="dam-search-input">
-            </div>
-          </div>
-        </div>
 
-        <div class="region-filter-bar" role="group" aria-label="กรองข้อมูลเขื่อนตามภูมิภาค">
-          <button type="button" class="btn-reg-filter is-active" data-region="all">ทุกภาค (35)</button>
-          <button type="button" class="btn-reg-filter" data-region="ภาคเหนือ">ภาคเหนือ (8)</button>
-          <button type="button" class="btn-reg-filter" data-region="ภาคตะวันออกเฉียงเหนือ">ภาคอีสาน (12)</button>
-          <button type="button" class="btn-reg-filter" data-region="ภาคกลาง">ภาคกลาง (3)</button>
-          <button type="button" class="btn-reg-filter" data-region="ภาคตะวันตก">ภาคตะวันตก (2)</button>
-          <button type="button" class="btn-reg-filter" data-region="ภาคตะวันออก">ภาคตะวันออก (6)</button>
-          <button type="button" class="btn-reg-filter" data-region="ภาคใต้">ภาคใต้ (4)</button>
-        </div>
-
-        <div id="national-dams-container" class="national-dams-container">
-          <!-- Dynamic 35 Dam Cards Grid -->
-        </div>
-      </div>
-    </section>
-
-    <section id="charts-section" class="charts" aria-label="กราฟแนวโน้มย้อนหลัง">
-      <div class="charts-head" style="justify-content:flex-end; margin-bottom:8px;">
-        <div class="range" role="tablist" aria-label="ช่วงเวลา">
-          <button role="tab" data-range="24h" aria-selected="true">24 ชม.</button>
-          <button role="tab" data-range="3d" aria-selected="false">3 วัน</button>
-          <button role="tab" data-range="7d" aria-selected="false">7 วัน</button>
-        </div>
-      </div>
-      <figure class="chart-card">
-        <figcaption>
-          <strong>น้ำในตัวเมืองห่างจากขอบตลิ่งเท่าไร</strong>
-          <span>เส้นประสีแดง = ขอบตลิ่ง (ถ้าเส้นน้ำแตะเส้นนี้ = น้ำล้นตลิ่ง) · ตัวเลขเป็นเมตร</span>
-        </figcaption>
-        <div class="chart" id="chart-city"></div>
-        <details class="table-view"><summary>ดูเป็นตาราง</summary><div id="table-city"></div></details>
-      </figure>
-      <figure class="chart-card">
-        <figcaption>
-          <strong>น้ำที่ไหลออกจากเขื่อน</strong>
-          <span>หน่วย ลบ.ม./วินาที · เส้นประ = ปริมาณที่ลำน้ำรับได้โดยประมาณ</span>
-        </figcaption>
-        <div class="chart" id="chart-release"></div>
-        <details class="table-view"><summary>ดูเป็นตาราง</summary><div id="table-release"></div></details>
-      </figure>
-    </section>
 
     <section id="stations-section" class="stations" aria-label="ตาราง 16 สถานีโทรมาตรแบบละเอียด">
       <div class="table-scroll">
@@ -3172,135 +3089,7 @@ tr.stale td { color: var(--muted); }
       </div>
     </section>
 
-    <!-- Preparedness & Emergency Guide -->
-    <section id="preparedness-guide" class="prep-guide" aria-labelledby="prep-h">
-      <div class="prep-head">
-        <div class="prep-title-wrap">
-          <div class="prep-icon">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-          </div>
-          <div>
-            <h2 id="prep-h" class="section-title" style="margin:0">คู่มือเตรียมความพร้อมและเบอร์ฉุกเฉิน</h2>
-            <p class="hint-block" style="margin:2px 0 0">คำแนะนำเชิงปฏิบัติการสำหรับประชาชน แยกส่วนเตรียมการล่วงหน้าและการรับมือเมื่อเกิดเหตุ</p>
-          </div>
-        </div>
-        <span id="prep-badge" class="prep-badge"></span>
-      </div>
-      <div class="prep-hotlines" style="display:flex; flex-wrap:wrap; gap:8px 12px; margin-bottom:14px;">
-        <a href="tel:1784" class="btn-action" style="padding:6px 14px; min-height:36px; font-size:12px; background:rgba(208,59,59,0.12); color:var(--critical); box-shadow:inset 0 0 0 1px rgba(208,59,59,0.3);">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          <span>สายด่วนสาธารณภัย ปภ. <strong>1784</strong></span>
-        </a>
-        <a href="tel:1129" class="btn-action" style="padding:6px 14px; min-height:36px; font-size:12px; background:rgba(250,178,25,0.12); color:#b45309; box-shadow:inset 0 0 0 1px rgba(250,178,25,0.3);">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          <span>แจ้งไฟฟ้ารั่ว/ดับ กฟภ. <strong>1129</strong></span>
-        </a>
-        <a href="tel:1669" class="btn-action" style="padding:6px 14px; min-height:36px; font-size:12px; background:rgba(12,163,12,0.12); color:#0ca30c; box-shadow:inset 0 0 0 1px rgba(12,163,12,0.3);">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-          <span>กู้ชีพฉุกเฉิน <strong>1669</strong></span>
-        </a>
-      </div>
-      <div id="prep-content" class="prep-body"></div>
-      <details class="prep-refs" id="prep-refs-details">
-        <summary class="prep-refs-summary">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <span class="prep-ref-book-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            </span>
-            <strong>แหล่งข้อมูลและคู่มืออ้างอิงทางการ (คลิกอ่านฉบับเต็ม)</strong>
-            <span class="prep-refs-count">7 แหล่งข้อมูล</span>
-          </div>
-          <svg class="prep-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.3"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </summary>
-        <ul class="prep-ref-list">
-          <li>
-            <span class="prep-ref-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
-            <a class="ref-link" href="https://www.disaster.go.th/" target="_blank" rel="noopener">กรมป้องกันและบรรเทาสาธารณภัย (ปภ.) — คู่มือประชาชนรับมือน้ำท่วมและการปฏิบัติตน</a> · สายด่วน <strong>1784</strong>
-          </li>
-          <li>
-            <span class="prep-ref-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-            <a class="ref-link" href="https://www.pea.co.th/" target="_blank" rel="noopener">การไฟฟ้าส่วนภูมิภาค (กฟภ. / PEA) — ข้อแนะนำการใช้ไฟฟ้าและตัดกระแสไฟเมื่อเกิดอุทกภัย</a> · สายด่วน <strong>1129</strong>
-          </li>
-          <li>
-            <span class="prep-ref-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
-            <a class="ref-link" href="https://ddc.moph.go.th/" target="_blank" rel="noopener">กรมควบคุมโรค กระทรวงสาธารณสุข — การป้องกันโรคติดต่อที่มากับน้ำและอันตรายจากสัตว์มีพิษ</a> · สายด่วน <strong>1422</strong>
-          </li>
-          <li>
-            <span class="prep-ref-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c3-2 6 2 9 0s6-2 9 0"/><path d="M2 17c3-2 6 2 9 0s6-2 9 0"/></svg></span>
-            <a class="ref-link" href="https://www.onwr.go.th/" target="_blank" rel="noopener">สำนักงานทรัพยากรน้ำแห่งชาติ (สทนช.) — แผนบริหารจัดการน้ำและการแจ้งเตือนลุ่มน้ำเพชรบุรี</a>
-          </li>
-          <li>
-            <span class="prep-ref-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-            <a class="ref-link" href="https://phetchaburi.rid.go.th/" target="_blank" rel="noopener">โครงการส่งน้ำและบำรุงรักษาเพชรบุรี (กรมชลประทาน) — การบริหารจัดการน้ำเขื่อนเพชร</a>
-          </li>
-          <li>
-            <span class="prep-ref-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 13v8M8 13v8M12 15v8M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/></svg></span>
-            <a class="ref-link" href="https://www.tmd.go.th/" target="_blank" rel="noopener">กรมอุตุนิยมวิทยา — เกณฑ์ปริมาณน้ำฝนและพยากรณ์อากาศล่วงหน้า</a>
-          </li>
-          <li>
-            <span class="prep-ref-icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg></span>
-            <a class="ref-link" href="https://www.hydro.navy.mi.th/" target="_blank" rel="noopener">กรมอุทกศาสตร์ กองทัพเรือ — สถิติและพยากรณ์น้ำขึ้น-น้ำลง ปากน้ำเพชรบุรี</a>
-          </li>
-        </ul>
-      </details>
-    </section>
 
-    <section class="glossary" id="glossary" aria-labelledby="glossary-h">
-      <h2 id="glossary-h" class="section-title">อ่านตัวเลขบนหน้านี้อย่างไร</h2>
-      <div class="gloss-grid">
-        <article id="g-bank">
-          <svg viewBox="0 0 120 70" aria-hidden="true" class="gloss-art">
-            <path d="M0 18 L28 18 L44 62 L76 62 L92 18 L120 18" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M34 36 L86 36 L76 62 L44 62 Z" fill="var(--water)"/>
-            <line x1="20" x2="100" y1="18" y2="18" stroke="var(--critical)" stroke-dasharray="4 3" stroke-width="1.5"/>
-            <line x1="60" x2="60" y1="21" y2="33" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah)" marker-start="url(#ah)"/>
-            <defs><marker id="ah" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L6 3L0 6z" fill="currentColor"/></marker></defs>
-          </svg>
-          <h3>"อีก X เมตรถึงขอบตลิ่ง"</h3>
-          <p>ระยะจากผิวน้ำขึ้นไปถึงขอบตลิ่ง (ขอบฝั่งแม่น้ำ) ตัวเลข<strong>ยิ่งน้อยยิ่งใกล้ล้น</strong> ถ้าเป็น 0 แปลว่าน้ำเสมอขอบตลิ่งพอดี เทียบง่าย ๆ: 1 เมตร ≈ สูงถึงเอวผู้ใหญ่, 3 เมตร ≈ บ้าน 1 ชั้น</p>
-        </article>
-        <article id="g-percent">
-          <svg viewBox="0 0 120 70" aria-hidden="true" class="gloss-art">
-            <rect x="40" y="6" width="40" height="58" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
-            <rect x="42" y="30" width="36" height="32" rx="2" fill="var(--water)"/>
-            <text x="88" y="12" font-size="10" fill="currentColor">100%</text>
-            <text x="88" y="34" font-size="10" fill="currentColor">55%</text>
-            <text x="88" y="64" font-size="10" fill="currentColor">0%</text>
-          </svg>
-          <h3>"น้ำเต็มตลิ่ง กี่ %"</h3>
-          <p>เทียบระดับน้ำกับความสูงของตลิ่ง 0% คือท้องน้ำ/ตีนตลิ่ง 100% คือขอบตลิ่ง <strong>เกิน 100% = น้ำล้นตลิ่ง</strong> ใช้เกณฑ์: 70% เฝ้าระวัง · 90% ใกล้ตลิ่ง</p>
-        </article>
-        <article id="g-flow">
-          <svg viewBox="0 0 120 70" aria-hidden="true" class="gloss-art">
-            <rect x="8" y="22" width="34" height="34" fill="var(--water)" stroke="currentColor" stroke-width="1.5"/>
-            <text x="25" y="44" font-size="10" text-anchor="middle" fill="currentColor">1 ม.³</text>
-            <text x="52" y="44" font-size="12" fill="currentColor">=</text>
-            <text x="64" y="36" font-size="10" fill="currentColor">1,000 ลิตร</text>
-            <text x="64" y="52" font-size="10" fill="currentColor">≈ 5 โอ่งมังกร</text>
-          </svg>
-          <h3>"ลบ.ม./วินาที"</h3>
-          <p>ลูกบาศก์เมตรต่อวินาที คือปริมาณน้ำที่ไหลผ่านจุดหนึ่งในแต่ละวินาที 1 ลบ.ม. = 1,000 ลิตร ตัวอย่าง: 120 ลบ.ม./วินาที ≈ น้ำเต็มสระว่ายน้ำโอลิมปิก 1 สระ ทุก ~20 วินาที แม่น้ำในตัวเมืองรับได้ราว 150</p>
-        </article>
-        <article id="g-dam">
-          <svg viewBox="0 0 120 70" aria-hidden="true" class="gloss-art">
-            <path d="M8 64 L8 20 L84 20 L100 64 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M10 62 L10 16 L84 16 L84 20 L10 20 Z" fill="var(--water)"/>
-            <path d="M84 16 Q96 18 104 40" fill="none" stroke="var(--water)" stroke-width="4"/>
-            <line x1="4" x2="88" y1="20" y2="20" stroke="var(--critical)" stroke-dasharray="4 3" stroke-width="1.5"/>
-          </svg>
-          <h3>"% ความจุเขื่อน" และ "น้ำล้นสปิลเวย์"</h3>
-          <p>100% = ระดับเก็บกักปกติ (710 ล้าน ลบ.ม.) เกิน 100% น้ำส่วนเกินจะไหลข้ามสปิลเวย์ (ทางน้ำล้น) ลงแม่น้ำ<strong>เองโดยอัตโนมัติ</strong> เขื่อนจึงคุมปริมาณน้ำส่วนนี้ไม่ได้ ยิ่งฝนตกเหนือเขื่อนมาก น้ำล้นยิ่งมาก</p>
-        </article>
-        <article id="g-msl">
-          <h3>"ม.รทก." ที่เห็นในเว็บอื่น</h3>
-          <p>ย่อจาก <em>เมตร เหนือระดับน้ำทะเลปานกลาง</em> เป็นความสูงที่นับจากระดับน้ำทะเล ไม่ใช่ความลึกของน้ำ ตัวเลขนี้เทียบกันข้ามสถานีไม่ได้ (เช่น ท่ายาง 25 ม. กับในเมือง 3 ม. ไม่ได้แปลว่าท่ายางน้ำลึกกว่า) หน้านี้จึงแปลงเป็น "อีกกี่เมตรถึงขอบตลิ่ง" ให้แทน</p>
-        </article>
-        <article id="g-time">
-          <h3>เวลาเดินทางของน้ำ</h3>
-          <p>น้ำจากใต้เขื่อนใช้เวลาราว 33 ชั่วโมง (±12) กว่าจะถึงตัวเมือง (อ้างอิงเหตุการณ์ปี 2561) ส่วนน้ำบางส่วนถูกผันเข้าคลองชลประทานที่เขื่อนเพชร ระดับน้ำในเมืองยังขึ้นกับน้ำทะเลหนุนที่ปากแม่น้ำด้วย</p>
-        </article>
-      </div>
-    </section>
 
     <section class="sources" aria-labelledby="sources-h">
       <h2 id="sources-h" class="section-title">ข้อมูลอัปเดตเมื่อไร</h2>
@@ -4687,7 +4476,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
   const known = (l) => l !== null && l !== undefined;
   const dot = (level, extra = '') => `<span class="status-dot ${extra}" data-level="${level ?? ''}" aria-hidden="true">${known(level) ? (STATUS[level].svg || '') : '?'}</span>`;
   const pill = (level, label) => `<span class="pill">${dot(level)}${esc(label ?? (known(level) ? STATUS[level].label : 'ไม่มีข้อมูล'))}</span>`;
-  const glossLink = (id, text = 'อ่านตัวเลขนี้อย่างไร') => `<a class="gloss-link" href="#${id}">ⓘ ${text}</a>`;
+  const glossLink = () => '';
 
   // ---------- time ----------
   const dayKey = (t) => new Intl.DateTimeFormat('en-CA', { timeZone: TZ }).format(t);
@@ -5666,7 +5455,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
                ${meter(nat.total_percent, 120, [{ v: 100, label: 'เต็ม 100%' }], nat.total_percent > 100)}
                <p class="plain" style="margin-top:8px;">น้ำกักเก็บรวม <strong>${fmtNum(nat.total_volume_mcm, 0)}</strong> ล้าน ลบ.ม. จากความจุรวม <strong>${fmtNum(nat.total_capacity_mcm, 0)}</strong> ล้าน ลบ.ม.</p>
                <p class="sub">ยังสามารถรองรับน้ำได้อีก ~${fmtNum(Math.max(0, nat.total_capacity_mcm - nat.total_volume_mcm), 0)} ล้าน ลบ.ม.</p>`,
-        meta: `<a class="ref-badge" href="#national-dams-section">ดูตาราง 35 เขื่อนด้านล่าง ↓</a>`
+        meta: `รายงานสถานการณ์น้ำ กรมชลประทาน & กฟผ.`
       }));
 
       const netDaily = Math.round(((nat.total_inflow_mcm_day || 0) - (nat.total_outflow_mcm_day || 0)) * 10) / 10;
@@ -6108,34 +5897,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
 
   let history = null;
   function renderCharts() {
-    if (!history) return;
-    const h = history;
-    const t1 = h.now;
-    const t0 = h.since;
-    const colors = [css('--series-1'), css('--series-2')];
-    const citySeries = h.city.map((c, i) => ({ name: c.name, short: c.name, color: colors[i], points: c.points }));
-    const fmtM = (v, precise) => (precise ? `${v <= 0 ? 'ห่างตลิ่ง ' : 'ล้นตลิ่ง '}${fmtNum(Math.abs(v), 2)}` : fmtNum(v, Math.abs(v) < 10 && v % 1 ? 1 : 0));
-    lineChart($('#chart-city'), {
-      series: citySeries,
-      refs: [{ y: 0, label: 'ขอบตลิ่ง', legend: 'ขอบตลิ่ง', color: css('--critical') }],
-      t0, t1, unit: 'ม.', fmt: fmtM,
-    });
-    chartTable($('#table-city'), citySeries, (v) => fmtM(v, true), 'เทียบขอบตลิ่ง (ม.)');
-
-    const r = h.release;
-    const relSeries = [
-      { name: `${r.live.name} (วัดสด รายชั่วโมง)`, short: r.live.name, color: colors[0], points: r.live.points },
-      { name: r.dam.name, short: 'เขื่อน (รายวัน)', color: colors[1], points: r.dam.points, step: true, markers: true },
-    ];
-    lineChart($('#chart-release'), {
-      series: relSeries,
-      refs: [
-        { y: r.capacity_city, label: `ตัวเมือง ~${r.capacity_city}`, legend: `แม่น้ำในตัวเมืองรับได้ ~${r.capacity_city}`, color: css('--serious') },
-        { y: r.capacity_b3, label: `~${r.capacity_b3}`, legend: `ลำน้ำใต้เขื่อนรับได้ ~${r.capacity_b3}`, color: css('--muted') },
-      ],
-      t0, t1, unit: 'ลบ.ม./วินาที', extendTo: t1, fmt: (v) => fmtNum(v),
-    });
-    chartTable($('#table-release'), relSeries, (v) => fmtNum(v, 1), 'ลบ.ม./วินาที');
+    // Charts section removed
   }
 
   // ---------- freshness: tab title, favicon, sticky bar ----------
@@ -8807,8 +8569,6 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
     renderCards(s);
     renderStations(s);
     renderSources(s.freshness);
-    renderPreparednessGuide(s);
-    renderNationalDamsGrid(s);
     updateShareLineLink(s);
     if (!basinMap) initBasinMap();
     updateBasinMap(s);
@@ -9041,7 +8801,7 @@ module.exports = { buildSnapshot, buildHistory, trend, dailyPeaks, detectRise, a
   document.addEventListener('animationend', (e) => e.target.classList?.remove('flash'));
 
   let rt;
-  new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(renderCharts, 120); }).observe($('.charts'));
+  const chartsEl = $('.charts'); if (chartsEl) new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(renderCharts, 120); }).observe(chartsEl);
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', renderCharts);
 
   // Server mode only: offer a frozen copy (option B) for sharing / keeping offline.
