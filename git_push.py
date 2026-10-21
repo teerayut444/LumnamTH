@@ -46,9 +46,9 @@ def run_git(git_path, args, cwd):
 
 def main():
     workspace = Path(__file__).parent.resolve()
-    print("=" * 50)
+    print("=" * 55)
     print("🚀 สคริปต์ Git Push อัตโนมัติ (LumnamTH)")
-    print("=" * 50)
+    print("=" * 55)
 
     # 1. ค้นหา Git
     git_path = find_git()
@@ -58,7 +58,7 @@ def main():
 
     print(f"✅ ใช้ Git จาก: {git_path}")
 
-    # 2. ซิงค์ Lumnam-monitor.html ไปยัง index.html หากมีการแก้ไข
+    # 2. ซิงค์ Lumnam-monitor.html ไปยัง index.html หากมีการแก้ไข (ถ้ามีไฟล์นี้)
     src_file = workspace / "Lumnam-monitor.html"
     dst_file = workspace / "index.html"
     if src_file.exists():
@@ -67,63 +67,85 @@ def main():
             shutil.copy2(src_file, dst_file)
             print("✅ ซิงค์ index.html เรียบร้อย")
 
-    # 3. ตรวจสอบสถานะการเปลี่ยนแปลง
+    # 3. ดึงอัปเดตล่าสุดจาก GitHub ก่อน (ป้องกันปัญหาถูกปฏิเสธเวลาแก้ไฟล์บนเว็บ)
+    print("🔄 กำลังตรวจสอบและซิงค์ข้อมูลล่าสุดจาก GitHub (git pull --rebase)...")
+    pull_res = run_git(git_path, ["pull", "--rebase", "origin", "main"], cwd=workspace)
+    if pull_res.returncode != 0:
+        if "CONFLICT" in pull_res.stderr or "CONFLICT" in pull_res.stdout:
+            print(f"⚠️ เกิดข้อขัดแย้ง (Conflict) ในการรวมโค้ด:\n{pull_res.stderr or pull_res.stdout}")
+            wait_exit(1)
+
+    # 4. ตรวจสอบสถานะไฟล์ (ยังไม่ได้ commit)
     status = run_git(git_path, ["status", "--porcelain"], cwd=workspace)
-    if not status.stdout.strip():
-        print("ℹ️ ไม่มีไฟล์ที่มีการแก้ไขหรือเปลี่ยนแปลง ไม่จำเป็นต้อง Push ครับ")
+    has_uncommitted = bool(status.stdout.strip())
+
+    # ตรวจสอบว่ามี commit ที่ยังไม่ได้ push หรือไม่
+    unpushed = run_git(git_path, ["log", "origin/main..HEAD", "--oneline"], cwd=workspace)
+    has_unpushed = bool(unpushed.stdout.strip())
+
+    if not has_uncommitted and not has_unpushed:
+        print("\nℹ️ ทุกอย่างเป็นปัจจุบันแล้ว ไม่มีไฟล์แก้ไข และไม่มี Commit ค้างส่งครับ")
         wait_exit(0)
 
-    print("\n📂 รายการไฟล์ที่มีการเปลี่ยนแปลง:")
-    for line in status.stdout.strip().splitlines():
-        print(f"   {line}")
-    print()
+    # 5. จัดการ Commit ไฟล์ใหม่ถ้ามีการเปลี่ยนแปลง
+    if has_uncommitted:
+        print("\n📂 รายการไฟล์ที่มีการเปลี่ยนแปลง:")
+        for line in status.stdout.strip().splitlines():
+            print(f"   {line}")
+        print()
 
-    # 4. รับข้อความ Commit
-    commit_msg = ""
-    if len(sys.argv) > 1:
-        commit_msg = " ".join(sys.argv[1:]).strip()
-    else:
-        try:
-            user_input = input("💬 ใส่ข้อความ Commit (กด Enter เพื่อใช้วันที่เวลาปัจจุบัน): ").strip()
-            if user_input:
-                commit_msg = user_input
-        except EOFError:
-            pass
-
-    if not commit_msg:
-        commit_msg = f"Update: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-
-    print(f"📝 Commit message: \"{commit_msg}\"")
-
-    # 5. git add .
-    print("\n⏳ กำลังเพิ่มไฟล์ (git add .)...")
-    add_res = run_git(git_path, ["add", "."], cwd=workspace)
-    if add_res.returncode != 0:
-        print(f"❌ เกิดข้อผิดพลาดในการ git add:\n{add_res.stderr}")
-        wait_exit(1)
-
-    # 6. git commit
-    print("⏳ กำลังบันทึกการเปลี่ยนแปลง (git commit)...")
-    commit_res = run_git(git_path, ["commit", "-m", commit_msg], cwd=workspace)
-    if commit_res.returncode != 0:
-        # อาจเกิดกรณีไม่มีการเปลี่ยนแปลงหลัง add
-        if "nothing to commit" in commit_res.stdout or "nothing to commit" in commit_res.stderr:
-            print("ℹ️ ไม่มีอะไรต้อง commit เพิ่มเติม")
+        commit_msg = ""
+        if len(sys.argv) > 1:
+            commit_msg = " ".join(sys.argv[1:]).strip()
         else:
-            print(f"❌ เกิดข้อผิดพลาดในการ commit:\n{commit_res.stderr or commit_res.stdout}")
-            wait_exit(1)
-    else:
-        print("✅ Commit สำเร็จ!")
+            try:
+                user_input = input("💬 ใส่ข้อความ Commit (กด Enter เพื่อใช้วันที่เวลาปัจจุบัน): ").strip()
+                if user_input:
+                    commit_msg = user_input
+            except EOFError:
+                pass
 
-    # 7. git push
-    print("⏳ กำลังส่งข้อมูลขึ้น GitHub (git push origin main)...")
-    # รันแบบแสดงผล realtime
+        if not commit_msg:
+            commit_msg = f"Update: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+
+        print(f"📝 Commit message: \"{commit_msg}\"")
+
+        # git add .
+        print("\n⏳ กำลังเพิ่มไฟล์ (git add .)...")
+        add_res = run_git(git_path, ["add", "."], cwd=workspace)
+        if add_res.returncode != 0:
+            print(f"❌ เกิดข้อผิดพลาดในการ git add:\n{add_res.stderr}")
+            wait_exit(1)
+
+        # git commit
+        print("⏳ กำลังบันทึกการเปลี่ยนแปลง (git commit)...")
+        commit_res = run_git(git_path, ["commit", "-m", commit_msg], cwd=workspace)
+        if commit_res.returncode != 0:
+            if "nothing to commit" in commit_res.stdout or "nothing to commit" in commit_res.stderr:
+                print("ℹ️ ไม่มีอะไรต้อง commit เพิ่มเติม")
+            else:
+                print(f"❌ เกิดข้อผิดพลาดในการ commit:\n{commit_res.stderr or commit_res.stdout}")
+                wait_exit(1)
+        else:
+            print("✅ Commit สำเร็จ!")
+    else:
+        print(f"\n📦 มี Commit ที่บันทึกไว้แล้วแต่ยังไม่ได้ส่งขึ้น GitHub:")
+        for line in unpushed.stdout.strip().splitlines():
+            print(f"   {line}")
+
+    # 6. git push
+    print("\n⏳ กำลังส่งข้อมูลขึ้น GitHub (git push origin main)...")
     push_process = subprocess.run([git_path, "push", "origin", "main"], cwd=workspace)
+    if push_process.returncode != 0:
+        print("⚠️ Push ไม่สำเร็จ กำลังลองดึงข้อมูลและ rebase ใหม่...")
+        run_git(git_path, ["pull", "--rebase", "origin", "main"], cwd=workspace)
+        push_process = subprocess.run([git_path, "push", "origin", "main"], cwd=workspace)
+
     if push_process.returncode == 0:
-        print("\n🎉 ===========================================")
+        print("\n🎉 ===================================================")
         print("✅ Deploy ขึ้น GitHub สำเร็จเรียบร้อยแล้ว!")
         print("🌐 เว็บไซต์: https://teerayut444.github.io/LumnamTH/")
-        print("===========================================")
+        print("===================================================")
     else:
         print("\n❌ Git Push ไม่สำเร็จ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตหรือสิทธิ์ GitHub")
 
